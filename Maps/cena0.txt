@@ -1,0 +1,42 @@
+120 120 0
+7
+# cube.mesh Examples/Rocky 0 0 0 1 1 10 0 0 0
+a column.mesh Examples/Rocky 0 0 70 2 2 2 0 0 0
+s athene.mesh Examples/Rocky 0 0 70 1 1 1 0 0 0
+q sphere.mesh Examples/SphereMappedRustySteel 0 0 80 0.5 0.5 0.5 0 0 0
+c ogrehead.mesh null 0 0 80 1.5 1.5 1.5 0 0 0
+r ninja.mesh null 0 0 0 0.5 0.5 0.5 0 0 0
+b Barrel.mesh null 0 0 30 10 10 10 0 0 0
+9 9 1 0
+....a....
+.r.bs....
+..#.a....
+....q....
+.........
+.........
+..c......
+.........
+.........
+
+
+Simbolos especiais:
+
+b=barril
+c=AI
+r=player
+q=destino
+.=espaco livre
+*=espaco bloqueado sem malha
+
+string MashName;//Nome da malha associada ao objeto
+string MaterialName;//Nome do material usado
+double px, py, pz;//posicao relativa
+double sx, sy, sz;//fatores de escala
+double yaw, pitch, roll;//fatores de rotacao
+
+Formato arquivo
+Dx Dy Dz (Tamanho das celulas)
+K=Numero de objetos
+K objetos no formato: <simbolo> <nome da malha> <nome do material> px py pz sx sy sz yaw pitch roll
+N M dif direcao
+N linhas de M colunas descrevendo o labirinto

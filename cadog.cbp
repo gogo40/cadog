@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="cadog" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="Debug\cadog" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="Debug" />
+				<Option object_output="obj\Debug\" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-D_DEBUG" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="OgreMain_d" />
+					<Add library="OIS_d" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="Release\cadog" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="Release" />
+				<Option object_output="obj\Release\" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-DNDEBUG" />
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="OgreMain" />
+					<Add library="OIS" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-mthreads" />
+			<Add option="-fmessage-length=0" />
+			<Add option="-fexceptions" />
+			<Add option="-fident" />
+			<Add option="-DWIN32" />
+			<Add option="-D_WINDOWS" />
+			<Add directory="$(OGRE_HOME)\include" />
+			<Add directory="$(OGRE_HOME)\include\OGRE" />
+			<Add directory="$(OGRE_HOME)\include\OIS" />
+			<Add directory="$(OGRE_HOME)\boost_1_42" />
+		</Compiler>
+		<Linker>
+			<Add option="-Wl,--enable-runtime-pseudo-reloc" />
+			<Add option="-Wl,--enable-auto-image-base" />
+			<Add option="-Wl,--enable-auto-import" />
+			<Add option="-Wl,--add-stdcall-alias" />
+			<Add option="-mthreads" />
+			<Add library="irrKlang" />
+			<Add directory="$(OGRE_HOME)\bin\$(TARGET_NAME)" />
+			<Add directory="$(OGRE_HOME)\bin\Debug" />
+			<Add directory="$(OGRE_HOME)\bin\Release" />
+		</Linker>
+		<Unit filename="BaseApplication.cpp" />
+		<Unit filename="cadog.cpp" />
+		<Unit filename="cadog.h" />
+		<Unit filename="cadogAnimationControl.cpp" />
+		<Unit filename="cadogAnimationControl.h" />
+		<Unit filename="cadogApplication.cpp" />
+		<Unit filename="cadogApplication.h" />
+		<Unit filename="cadogFrameRenderingQueued.cpp" />
+		<Unit filename="cadogKeyPressed.cpp" />
+		<Unit filename="cadogMainMenu.cpp" />
+		<Unit filename="cadogMainMenu.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

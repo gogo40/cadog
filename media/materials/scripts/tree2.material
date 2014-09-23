@@ -1,0 +1,40 @@
+
+material tree2/Material2
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.196078 0.486275 0.156863 1
+			diffuse 0.196078 0.486275 0.156863 1
+
+			texture_unit
+			{
+				texture_alias 0
+				texture BARK.JPG
+			}
+		}
+
+	}
+
+}
+
+material tree2/Material1
+{
+	technique
+	{
+		pass
+		{
+			ambient 0.196078 0.356863 0.156863 1
+			diffuse 0.196078 0.356863 0.156863 1
+
+			texture_unit
+			{
+				texture_alias 0
+				texture LEAVEB.JPG
+			}
+		}
+
+	}
+
+}
