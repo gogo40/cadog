@@ -113,7 +113,7 @@ void AnimationControl::showMoveSin(const Ogre::FrameEvent &evt,bool& movComp,con
         if(is1!=0)
             mAnimationState = mEntity->getAnimationState(is1);
 
-        h=hmax*sin(2*M_PI*frequence*tAcc);
+        h=hmax*sin(2*acos(-1)*frequence*tAcc);
         mDestination.y=h+ho;
         mNode->setPosition(mDestination);
         movComp=true;
@@ -121,7 +121,7 @@ void AnimationControl::showMoveSin(const Ogre::FrameEvent &evt,bool& movComp,con
     }else{
         Ogre::Real move=mWalkSpeed*evt.timeSinceLastFrame;
 
-        h=hmax*sin(2*M_PI*frequence*tAcc);
+        h=hmax*sin(2*acos(-1)*frequence*tAcc);
         mDestination.y=h+ho;
 
         mDistance-=move;

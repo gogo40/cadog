@@ -73,7 +73,7 @@ bool Cadog::move(point po, int mov, point& d, bool& tel)//efetua movimento do jo
     return false;
 }
 
-inline int abs(int x){return (x<0)?-x:x; }
+#define abs(x) (((x)<0)?(-(x)):(x))
 
 int Cadog::H(point po, point pf){
 	int Dx=abs(po.x-pf.x);

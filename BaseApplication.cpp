@@ -24,8 +24,8 @@ cadogApplication::cadogApplication()
 	mCamera(0),
 	mSceneMgr(0),
 	mWindow(0),
-	mResourcesCfg(Ogre::StringUtil::BLANK),
-	mPluginsCfg(Ogre::StringUtil::BLANK),
+	mResourcesCfg(""),
+	mPluginsCfg(""),
 	mTrayMgr(0),
 	mCameraMan(0),
 	mDetailsPanel(0),
@@ -149,8 +149,9 @@ void cadogApplication::createFrameListener(void)
 	Ogre::FontManager::getSingleton().getByName("SdkTrays/Caption")->load();
 	Ogre::FontManager::getSingleton().getByName("SdkTrays/Value")->load();
 
-
-	mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", mWindow, mMouse, this);
+	mInputContext.mKeyboard = mKeyboard;
+	mInputContext.mMouse = mMouse;
+	mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", mWindow, mInputContext, this);
 	mTrayMgr->hideCursor();
 
 	//Cria painel com parametros do jogo

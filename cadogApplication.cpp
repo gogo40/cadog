@@ -95,7 +95,6 @@ void cadogApplication::createScene(void)
     mSceneMgr->setShadowTechnique(Ogre::SHADOWDETAILTYPE_STENCIL);
     mSceneMgr->setFog(Ogre::FOG_EXP,Ogre::ColourValue::Black,0.001);
 
-
     Ogre::MeshManager::getSingleton().createPlane("ground", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
         plane, 20000, 20000 , 10, 10, true, 1, 5, 5, Ogre::Vector3::UNIT_Z);
 
