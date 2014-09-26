@@ -78,9 +78,7 @@ cadogApplication::~cadogApplication(void)
 	windowClosed(mWindow);
 
 	delete mRoot;
-	delete mCadogMainMenu;
 	delete mSoundMgr;
-	if (mOverlaySystem) delete mOverlaySystem;
 }
 
 //-------------------------------------------------------------------------------------
