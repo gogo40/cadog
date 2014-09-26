@@ -24,8 +24,8 @@ cadogApplication::cadogApplication()
 	mCamera(0),
 	mSceneMgr(0),
 	mWindow(0),
-	mResourcesCfg(""),
-	mPluginsCfg(""),
+	mResourcesCfg(Ogre::BLANKSTRING),
+	mPluginsCfg(Ogre::BLANKSTRING),
 	mTrayMgr(0),
 	mCameraMan(0),
 	mDetailsPanel(0),
@@ -80,6 +80,7 @@ cadogApplication::~cadogApplication(void)
 	delete mRoot;
 	delete mCadogMainMenu;
 	delete mSoundMgr;
+	if (mOverlaySystem) delete mOverlaySystem;
 }
 
 //-------------------------------------------------------------------------------------
@@ -146,11 +147,12 @@ void cadogApplication::createFrameListener(void)
 	//Register as a Window listener
 	Ogre::WindowEventUtilities::addWindowEventListener(mWindow, this);
 
-	Ogre::FontManager::getSingleton().getByName("SdkTrays/Caption")->load();
-	Ogre::FontManager::getSingleton().getByName("SdkTrays/Value")->load();
-
 	mInputContext.mKeyboard = mKeyboard;
 	mInputContext.mMouse = mMouse;
+
+	mFontManager->getSingleton().getByName("SdkTrays/Caption")->load();
+	mFontManager->getSingleton().getByName("SdkTrays/Value")->load();
+
 	mTrayMgr = new OgreBites::SdkTrayManager("InterfaceName", mWindow, mInputContext, this);
 	mTrayMgr->hideCursor();
 
@@ -168,7 +170,6 @@ void cadogApplication::createFrameListener(void)
     //mCadogMainMenu = new cadogMainMenu(mTrayMgr);
 
 	mRoot->addFrameListener(this);
-
 	mSoundMgr=irrklang::createIrrKlangDevice();
 
 }
@@ -214,16 +215,24 @@ void cadogApplication::setupResources(void)
 				archName, typeName, secName);
 		}
 	}
+
+	
 }
 //-------------------------------------------------------------------------------------
 void cadogApplication::createResourceListener(void)
 {
+	mOverlaySystem = new Ogre::OverlaySystem();
 
+	mFontManager = Ogre::FontManager::getSingletonPtr();
+	mOverlayManager = Ogre::OverlayManager::getSingletonPtr();
+	
+	mSceneMgr->addRenderQueueListener(mOverlaySystem);
 }
 //-------------------------------------------------------------------------------------
 void cadogApplication::loadResources(void)
 {
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+	Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup("Essential");
 }
 //-------------------------------------------------------------------------------------
 void cadogApplication::go(void)
@@ -248,6 +257,7 @@ bool cadogApplication::setup(void)
 {
 	mRoot = new Ogre::Root(mPluginsCfg);
 
+	
 	setupResources();
 
 	bool carryOn = configure();
@@ -261,15 +271,16 @@ bool cadogApplication::setup(void)
 	Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
 	// Create any resource listeners (for loading screens)
+	//Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 	//Ogre::ResourceGroupManager::getSingleton().initialiseResourceGroup("Essential");
 
-    createResourceListener();
+	createResourceListener();
 
 	// Load resources
+	
 	loadResources();
 
-
-
+	
     createFrameListener();
 
 	// Create the scene
